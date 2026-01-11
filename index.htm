@@ -11,8 +11,8 @@
       background: #555;
       margin: auto;
       position: relative;
-      perspective: 1000dvh;
-      height: 100dvh;
+      perspective: 1000svh;
+      height: 100svh;
       font-family:
         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
         sans-serif;
@@ -26,7 +26,7 @@
     button {
       -moz-appearance: none;
       -webkit-appearance: none;
-      border-radius: 2dvw;
+      border-radius: 2svw;
       appearance: none;
       display: block;
       background: black;
@@ -34,7 +34,7 @@
       color: yellow;
       cursor: pointer;
       margin: 0;
-      font-size: 15dvw;
+      font-size: 15svw;
       -webkit-text-size-adjust: 100%;
       transform-style: preserve-3d;
       transition-duration: 0.5s;
@@ -57,101 +57,101 @@
 
     @media (orientation: portrait) {
       button {
-        width: 30dvw;
-        height: calc((100dvh - 15dvw) / 5);
-        font-size: 15dvw;
+        width: 30svw;
+        height: calc((100svh - 15svw) / 5);
+        font-size: 15svw;
       }
 
       /* Vertical */
       button:nth-of-type(-n + 3) {
-        top: 2.5dvw;
+        top: 2.5svw;
       }
 
       button:nth-of-type(n + 4):nth-of-type(-n + 6) {
-        top: calc((100dvh - 15dvw) / 5 + 5dvw);
+        top: calc((100svh - 15svw) / 5 + 5svw);
       }
 
       button:nth-of-type(n + 7):nth-of-type(-n + 9) {
-        top: calc(2 * (100dvh - 15dvw) / 5 + 7.5dvw);
+        top: calc(2 * (100svh - 15svw) / 5 + 7.5svw);
       }
 
       button:nth-of-type(n + 10):nth-of-type(-n + 12) {
-        top: calc(3 * (100dvh - 15dvw) / 5 + 10dvw);
+        top: calc(3 * (100svh - 15svw) / 5 + 10svw);
       }
 
       button:nth-of-type(n + 13):nth-of-type(-n + 15) {
-        top: calc(4 * (100dvh - 15dvw) / 5 + 12.5dvw);
+        top: calc(4 * (100svh - 15svw) / 5 + 12.5svw);
       }
 
       /* Horizontal */
       button:nth-of-type(3n + 1) {
-        left: 2.5dvw;
+        left: 2.5svw;
       }
 
       button:nth-of-type(3n + 2) {
-        left: 35dvw;
+        left: 35svw;
       }
 
       button:nth-of-type(3n + 3) {
-        left: 67.5dvw;
+        left: 67.5svw;
       }
     }
 
     @media (orientation: landscape) {
       button {
-        width: 17dvw;
-        height: calc((100dvh - 10dvw) / 3);
-        font-size: 9dvw;
+        width: 17svw;
+        height: calc((100svh - 10svw) / 3);
+        font-size: 9svw;
       }
 
       /* Vertical */
       button:nth-of-type(-n + 5) {
-        top: 2.5dvw;
+        top: 2.5svw;
       }
 
       button:nth-of-type(n + 6):nth-of-type(-n + 10) {
-        top: calc((100dvh - 10dvw) / 3 + 5dvw);
+        top: calc((100svh - 10svw) / 3 + 5svw);
       }
 
       button:nth-of-type(n + 11):nth-of-type(-n + 15) {
-        top: calc(2 * (100dvh - 10dvw) / 3 + 7.5dvw);
+        top: calc(2 * (100svh - 10svw) / 3 + 7.5svw);
       }
 
       /* Horizontal */
       button:nth-of-type(5n + 1) {
-        left: 2.5dvw;
+        left: 2.5svw;
       }
 
       button:nth-of-type(5n + 2) {
-        left: 22dvw;
+        left: 22svw;
       }
 
       button:nth-of-type(5n + 3) {
-        left: 41.5dvw;
+        left: 41.5svw;
       }
 
       button:nth-of-type(5n + 4) {
-        left: 61dvw;
+        left: 61svw;
       }
 
       button:nth-of-type(5n + 5) {
-        left: 80.5dvw;
+        left: 80.5svw;
       }
     }
 
     /* Override double nth-of-type selector */
     button.active.active {
-      border-radius: 4dvw;
+      border-radius: 4svw;
       z-index: 2; /* closing cards are given a z-index of 1 */
       width: 100%;
       height: 100%;
       left: 0;
       top: 0;
-      font-size: 50dvw;
+      font-size: 50svw;
       font-weight: bold;
-      border-width: 2dvw;
+      border-width: 2svw;
       /* The translate keeps the open card in front in Firefox.  In Chrome a z-index is needed */
-      transform: translateZ(100dvh) scaleX(0.8) scaleY(0.8);
+      transform: translateZ(100svh) scaleX(0.8) scaleY(0.8);
       color: black;
       background: yellow;
       border-color: yellow;
@@ -170,11 +170,11 @@
 
     @media (orientation: landscape) and (min-aspect-ratio: 5/2) {
       button {
-        font-size: 10dvh;
+        font-size: 10svh;
       }
 
       button.active.active {
-        font-size: 80dvh;
+        font-size: 80svh;
       }
     }
   </style>
