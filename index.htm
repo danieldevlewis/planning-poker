@@ -23,6 +23,12 @@
       user-select: none;
     }
 
+    svg text {
+      font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif;
+    }
+
     button {
       -moz-appearance: none;
       -webkit-appearance: none;
@@ -34,15 +40,14 @@
       color: yellow;
       cursor: pointer;
       margin: 0;
-      font-size: 15svw;
       -webkit-text-size-adjust: 100%;
-      transform-style: preserve-3d;
+      text-size-adjust: 100%;
       transition-duration: 0.5s;
       transition-property:
-        transform, width, height, font-size, font-weight, border-width, top,
-        left, border-radius, color, background-color;
+        transform, width, height, border-width, top, left, border-radius, color,
+        background-color;
+      transition-property: all;
       position: absolute;
-      will-change: transform;
       z-index: 0;
       outline: 0;
       padding: 0;
@@ -50,7 +55,24 @@
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 
-    button:not(.active):focus {
+    button > svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      height: 100%;
+      width: 100%;
+      /* Prevent tooltips showing */
+      pointer-events: none;
+    }
+
+    button:focus {
+      z-index: 1;
+    }
+
+    button:not([aria-expanded="true"]):focus {
       color: #fff;
       border-color: #fff;
     }
@@ -59,40 +81,39 @@
       button {
         width: 30svw;
         height: calc((100svh - 15svw) / 5);
-        font-size: 15svw;
       }
 
       /* Vertical */
-      button:nth-of-type(-n + 3) {
+      button:where(:nth-of-type(-n + 3)) {
         top: 2.5svw;
       }
 
-      button:nth-of-type(n + 4):nth-of-type(-n + 6) {
+      button:where(:nth-of-type(n + 4):nth-of-type(-n + 6)) {
         top: calc((100svh - 15svw) / 5 + 5svw);
       }
 
-      button:nth-of-type(n + 7):nth-of-type(-n + 9) {
+      button:where(:nth-of-type(n + 7):nth-of-type(-n + 9)) {
         top: calc(2 * (100svh - 15svw) / 5 + 7.5svw);
       }
 
-      button:nth-of-type(n + 10):nth-of-type(-n + 12) {
+      button:where(:nth-of-type(n + 10):nth-of-type(-n + 12)) {
         top: calc(3 * (100svh - 15svw) / 5 + 10svw);
       }
 
-      button:nth-of-type(n + 13):nth-of-type(-n + 15) {
+      button:where(:nth-of-type(n + 13):nth-of-type(-n + 15)) {
         top: calc(4 * (100svh - 15svw) / 5 + 12.5svw);
       }
 
       /* Horizontal */
-      button:nth-of-type(3n + 1) {
+      button:where(:nth-of-type(3n + 1)) {
         left: 2.5svw;
       }
 
-      button:nth-of-type(3n + 2) {
+      button:where(:nth-of-type(3n + 2)) {
         left: 35svw;
       }
 
-      button:nth-of-type(3n + 3) {
+      button:where(:nth-of-type(3n + 3)) {
         left: 67.5svw;
       }
     }
@@ -101,204 +122,338 @@
       button {
         width: 17svw;
         height: calc((100svh - 10svw) / 3);
-        font-size: 9svw;
       }
 
       /* Vertical */
-      button:nth-of-type(-n + 5) {
+      button:where(:nth-of-type(-n + 5)) {
         top: 2.5svw;
       }
 
-      button:nth-of-type(n + 6):nth-of-type(-n + 10) {
+      button:where(:nth-of-type(n + 6):nth-of-type(-n + 10)) {
         top: calc((100svh - 10svw) / 3 + 5svw);
       }
 
-      button:nth-of-type(n + 11):nth-of-type(-n + 15) {
+      button:where(:nth-of-type(n + 11):nth-of-type(-n + 15)) {
         top: calc(2 * (100svh - 10svw) / 3 + 7.5svw);
       }
 
       /* Horizontal */
-      button:nth-of-type(5n + 1) {
+      button:where(:nth-of-type(5n + 1)) {
         left: 2.5svw;
       }
 
-      button:nth-of-type(5n + 2) {
+      button:where(:nth-of-type(5n + 2)) {
         left: 22svw;
       }
 
-      button:nth-of-type(5n + 3) {
+      button:where(:nth-of-type(5n + 3)) {
         left: 41.5svw;
       }
 
-      button:nth-of-type(5n + 4) {
+      button:where(:nth-of-type(5n + 4)) {
         left: 61svw;
       }
 
-      button:nth-of-type(5n + 5) {
+      button:where(:nth-of-type(5n + 5)) {
         left: 80.5svw;
       }
     }
 
-    /* Override double nth-of-type selector */
-    button.active.active {
+    button[aria-expanded="true"] {
       border-radius: 4svw;
-      z-index: 2; /* closing cards are given a z-index of 1 */
       width: 100%;
       height: 100%;
       left: 0;
       top: 0;
-      font-size: 50svw;
       font-weight: bold;
       border-width: 2svw;
-      /* The translate keeps the open card in front in Firefox.  In Chrome a z-index is needed */
-      transform: translateZ(100svh) scaleX(0.8) scaleY(0.8);
+      transform: scaleX(0.8) scaleY(0.8);
       color: black;
       background: yellow;
       border-color: yellow;
-      transition-property:
-        transform, width, height, font-size, border-width, top, left,
-        border-radius, color, background-color;
+      z-index: 1;
     }
 
-    button.active.active.weight-normal {
+    button[aria-expanded="true"].weight-normal {
       font-weight: normal;
     }
 
-    .dim > button:not(.active) {
+    body:has(button[aria-expanded="true"]) {
       opacity: 0.5;
-    }
-
-    @media (orientation: landscape) and (min-aspect-ratio: 5/2) {
-      button {
-        font-size: 10svh;
-      }
-
-      button.active.active {
-        font-size: 80svh;
-      }
     }
   </style>
 
-  <button type="button">0</button>
-  <button type="button">½</button>
-  <button type="button">1</button>
-  <button type="button">2</button>
-  <button type="button">3</button>
-  <button type="button">5</button>
-  <button type="button">8</button>
-  <button type="button">13</button>
-  <button type="button">20</button>
-  <button type="button">40</button>
-  <button type="button">90</button>
-  <button type="button">100</button>
-  <button type="button" aria-label="Unknown">?</button>
-  <button type="button" aria-label="Infinity">∞</button>
-  <button type="button" class="weight-normal">☕</button>
-
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>0</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        0
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>½</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        ½
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>1</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        1
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>2</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        2
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>3</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        3
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>5</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        5
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>8</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        8
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>13</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        13
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>20</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        20
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>40</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        40
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>90</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        90
+      </text>
+    </svg>
+  </button>
+  <button type="button">
+    <svg viewBox="0 0 200 100">
+      <title>100</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        100
+      </text>
+    </svg>
+  </button>
+  <button type="button" aria-label="Unknown">
+    <svg viewBox="0 0 200 100">
+      <title>?</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        ?
+      </text>
+    </svg>
+  </button>
+  <button type="button" aria-label="Infinity">
+    <svg viewBox="0 0 200 100">
+      <title>Infinity</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        ∞
+      </text>
+    </svg>
+  </button>
+  <button type="button" class="weight-normal">
+    <svg viewBox="0 0 200 100">
+      <title>☕</title>
+      <text
+        x="100"
+        y="50"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-size="80"
+        fill="currentColor"
+      >
+        ☕
+      </text>
+    </svg>
+  </button>
   <script>
-    (function () {
-      let clicker;
-
-      class Clicker {
-        constructor({ double, single }) {
-          this.double = double;
-          this.single = single;
-        }
-
-        remove() {
-          clicker = null;
-        }
-
-        click() {
-          if (this.timer) {
-            clearTimeout(this.timer);
-            this.remove();
-            this.double();
-            return;
-          }
-
-          this.timer = setTimeout(() => {
-            this.remove();
-            this.single();
-          }, 200);
-        }
+    function speak(button) {
+      if (!window.speechSynthesis) {
+        return;
       }
-
-      function close() {
-        Array.from(document.querySelectorAll(".active")).forEach((button) => {
-          button.addEventListener("transitionend", function handler() {
-            button.style.zIndex = "";
-            button.removeEventListener("transitionend", handler);
-          });
-          button.style.zIndex = 1;
-          button.classList.remove("active");
-          button.setAttribute("aria-expanded", "false");
-        });
-        document.body.classList.remove("dim");
-      }
-
-      function speak(button) {
-        if (!window.speechSynthesis) {
-          return;
-        }
-        const text = button.getAttribute("aria-label") || button.innerText;
-        const utterance = new SpeechSynthesisUtterance(text);
-        speechSynthesis.speak(utterance);
-      }
-
-      function toggle(button) {
-        if (button.classList.contains("active")) {
-          close();
-        } else {
-          if (document.body.classList.contains("dim")) {
-            close();
-          }
-
-          document.body.classList.add("dim");
-          button.classList.add("active");
-          button.setAttribute("aria-expanded", "true");
-        }
-      }
-
-      document.addEventListener("mouseup", (e) => {
-        e.preventDefault();
-
-        if (e.button !== 0) {
-          // Left click only
-          return;
-        }
-
-        const button = e.target;
-        if (button.nodeName.toLowerCase() !== "button") {
-          return;
-        }
-
-        if (!button.classList.contains("active")) {
-          toggle(button);
-          return;
-        }
-
-        clicker =
-          clicker ||
-          new Clicker({
-            double: () => speak(button),
-            single: () => toggle(button),
-          });
-        clicker.click();
-      });
-
-      document.addEventListener("keyup", (e) => {
-        if (e.key === "Escape" || e.keyCode === 27) {
-          e.preventDefault();
-          close();
-        } else if (e.key === "r" || e.keyCode === 115) {
-          speak(e.target);
-        }
-      });
-    })();
-
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./worker.js");
+      const text = button.getAttribute("aria-label") || button.innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(utterance);
     }
+
+    function toggle(button) {
+      button.ariaExpanded = button.ariaExpanded ? undefined : true;
+    }
+
+    const timeout = new WeakMap();
+
+    document.addEventListener("click", (e) => {
+      const button = e.target.closest("button");
+      if (!button) {
+        return;
+      }
+      if (button.ariaExpanded) {
+        if (e.detail === 1) {
+          timeout.set(
+            button,
+            setTimeout(() => toggle(button), 200),
+          );
+        } else if (e.detail == 2) {
+          clearTimeout(timeout.get(button));
+          speak(button);
+        }
+      } else {
+        toggle(button);
+      }
+    });
+
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "Escape") {
+        document
+          .querySelector("button[aria-expanded=true]")
+          .forEach((el) => toggle(el));
+      }
+    });
+
+    // if ("serviceWorker" in navigator) {
+    //  navigator.serviceWorker.register("./worker.js");
+    // }
   </script>
 </html>
