@@ -428,7 +428,13 @@
     }
 
     function toggle(button) {
-      button.ariaExpanded = button.ariaExpanded ? undefined : true;
+      document.querySelectorAll("button").forEach((b) => {
+        if (b === button) {
+          b.ariaExpanded = b.ariaExpanded ? undefined : true;
+        } else {
+          b.ariaExpanded = undefined;
+        }
+      });
     }
 
     const timeout = new WeakMap();
