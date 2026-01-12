@@ -42,11 +42,17 @@
       margin: 0;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      transition-duration: 0.5s;
-      transition-property:
-        transform, width, height, border-width, top, left, border-radius, color,
-        background-color;
-      transition-property: all;
+      transition:
+        transform 0.5s,
+        width 0.5s,
+        height 0.5s,
+        border-width 0.5s,
+        top 0.5s,
+        left 0.5s,
+        border-radius 0.5s,
+        color 0.5s,
+        background-color 0.5s,
+        z-index 0.5s step-end;
       position: absolute;
       z-index: 0;
       outline: 0;
@@ -66,10 +72,6 @@
       width: 100%;
       /* Prevent tooltips showing */
       pointer-events: none;
-    }
-
-    button:focus {
-      z-index: 1;
     }
 
     button:not([aria-expanded="true"]):focus {
@@ -172,10 +174,17 @@
       background: yellow;
       border-color: yellow;
       z-index: 1;
-    }
-
-    button[aria-expanded="true"].weight-normal {
-      font-weight: normal;
+      transition:
+        transform 0.5s,
+        width 0.5s,
+        height 0.5s,
+        border-width 0.5s,
+        top 0.5s,
+        left 0.5s,
+        border-radius 0.5s,
+        color 0.5s,
+        background-color 0.5s,
+        z-index 0.5s step-start;
     }
 
     body:has(button[aria-expanded="true"]) {
@@ -191,7 +200,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         0
@@ -206,7 +215,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         ½
@@ -221,7 +230,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         1
@@ -236,7 +245,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         2
@@ -251,7 +260,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         3
@@ -266,7 +275,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         5
@@ -281,7 +290,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         8
@@ -296,7 +305,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         13
@@ -311,7 +320,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         20
@@ -326,7 +335,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         40
@@ -341,7 +350,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         90
@@ -356,7 +365,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         100
@@ -371,7 +380,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         ?
@@ -386,14 +395,14 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         ∞
       </text>
     </svg>
   </button>
-  <button type="button" class="weight-normal">
+  <button type="button">
     <svg viewBox="0 0 200 100">
       <title>☕</title>
       <text
@@ -401,7 +410,7 @@
         y="50"
         text-anchor="middle"
         dominant-baseline="central"
-        font-size="80"
+        font-size="100"
         fill="currentColor"
       >
         ☕
