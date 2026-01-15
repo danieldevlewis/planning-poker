@@ -5,6 +5,7 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
   />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon-180.png" />
   <link rel="manifest" href="manifest.json" />
@@ -12,7 +13,13 @@
   <style>
     body {
       /* iOS PWA include the bottom unsafe area in svh */
-      --vh: calc((100svh - env(safe-area-inset-bottom, 0)) / 100);
+      --vh: calc(
+        (
+            100svh - env(safe-area-inset-bottom, 0) -
+              env(safe-area-inset-top, 0)
+          ) /
+          100
+      );
       --vw: calc(
         (
             100svw - env(safe-area-inset-left, 0) -
@@ -21,7 +28,8 @@
           100
       );
       background: #555;
-      margin: auto env(safe-area-inset-right, auto) auto env(safe-area-inset-left, auto);
+      margin: env(safe-area-inset-top, auto) env(safe-area-inset-right, auto)
+        env(safe-area-inset-bottom, auto) env(safe-area-inset-left, auto);
       position: relative;
       height: 100swh;
       height: calc(100 * var(--vh));
@@ -96,7 +104,7 @@
         width: 30svw;
         width: calc(var(--vw) * 30);
         height: calc((100svh - 15svw) / 5);
-        height: calc((var(--vh) * 100) - (var(--vw) * 15)) / 5));
+        height: calc(((var(--vh) * 100) - (var(--vw) * 15)) / 5);
       }
 
       /* Vertical */
@@ -112,17 +120,23 @@
 
       button:where(:nth-of-type(n + 7):nth-of-type(-n + 9)) {
         top: calc(2 * (100svh - 15svw) / 5 + 7.5svw);
-        top: calc(2 * ((var(--vh) * 100) - (var(--vw) * 15)) / 5 + (var(--vw) * 7.5));
+        top: calc(
+          2 * ((var(--vh) * 100) - (var(--vw) * 15)) / 5 + (var(--vw) * 7.5)
+        );
       }
 
       button:where(:nth-of-type(n + 10):nth-of-type(-n + 12)) {
         top: calc(3 * (100svh - 15svw) / 5 + 10svw);
-        top: calc(3 * ((var(--vh) * 100) - (var(--vw) * 15)) / 5 + (var(--vw) * 10));
+        top: calc(
+          3 * ((var(--vh) * 100) - (var(--vw) * 15)) / 5 + (var(--vw) * 10)
+        );
       }
 
       button:where(:nth-of-type(n + 13):nth-of-type(-n + 15)) {
         top: calc(4 * (100svh - 15svw) / 5 + 12.5svw);
-        top: calc(4 * ((var(--vh) * 100) - (var(--vw) * 15)) / 5 + (var(--vw) * 12.5));
+        top: calc(
+          4 * ((var(--vh) * 100) - (var(--vw) * 15)) / 5 + (var(--vw) * 12.5)
+        );
       }
 
       /* Horizontal */
@@ -163,7 +177,9 @@
 
       button:where(:nth-of-type(n + 11):nth-of-type(-n + 15)) {
         top: calc(2 * (100svh - 10svw) / 3 + 7.5svw);
-        top: calc(2 * ((var(--vh) * 100) - (var(--vw) * 10)) / 3 + (var(--vw) * 7.5));
+        top: calc(
+          2 * ((var(--vh) * 100) - (var(--vw) * 10)) / 3 + (var(--vw) * 7.5)
+        );
       }
 
       /* Horizontal */
